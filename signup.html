@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <style>
+    body {
+      background-image: url('cat.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      backdrop-filter: blur(3.5px);
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blur {
+      backdrop-filter: blur(3.5px);
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      padding: 20px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-family: 'Crimson Text', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid black;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    
+
+    .rounded-button {
+      display: inline-block;
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 100px;
+      border: 2px solid black;
+      color: black;
+      cursor: pointer;
+      background-color: darkgoldenrod;
+      font-family: 'Crimson Text', serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0em;
+    }
+
+    h1 {
+      font-family: 'Crimson Text', serif;
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="blur">
+    <h1>Signup Page</h1>
+    <form id="signupForm" action="#" method="POST" novalidate>
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+      </div>
+
+      <div>
+        <label>Gender:</label>
+          <label for="male">Male</label>
+          <input type="radio" id="male" name="gender" value="male" required>
+          <label for="female">Female</label>
+          <input type="radio" id="female" name="gender" value="female">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="e.g., 1234567890" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="e.g., example@domain.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <select id="country" name="country" required>
+          <option value="">Select Country</option>
+          <option value="us">United States</option>
+          <option value="ca">Canada</option>
+          <option value="uk">United Kingdom</option>
+          <option value="in">India</option>
+          <option value="au">Australia</option>
+        </select>
+      </div>
+
+      <button type="submit" class="rounded-button">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const dob = document.getElementById('dob').value;
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const country = document.getElementById('country').value;
+
+      if (!name || !dob || !gender || !phone || !email || !country) {
+        alert('All fields are required. Please fill out the form completely.');
+        return;
+      }
+
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(phone)) {
+        alert('Please enter a valid 10-digit phone number.');
+        return;
+      }
+
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      alert('Form submitted successfully!');
+      this.submit();
+    });
+  </script>
+</body>
+</html>
