@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-image: url('cat.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blur {
+            backdrop-filter: blur(3.5px);
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1147px;
+            height: 660px;
+            border-radius: 15px;
+            border: 3px solid #000;
+            margin-top: 2.5cm;
+            background-color: rgba(255, 192, 217, 0.3);
+            position: relative;
+        }
+
+        .imgclass {
+            padding-right: 0;
+        }
+
+        .img-fluid {
+            width: 418.16px;
+            height: 654px;
+            border: 1px solid #000;
+            margin-left: 2cm;
+        }
+
+        .line {
+            width: 344px;
+            border: 7px solid #000;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+
+        h2 {
+            margin-top: 1cm;
+        }
+
+        .login-cont {
+            position: relative;
+        }
+
+        .close-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .rounded-button {
+            display: inline-block;
+            width: 350px;
+            height: 60px;
+            padding: 10px 20px;
+            font-size: 10px;
+            text-align: center;
+            border-radius: 100px;
+            border: 2px solid black;
+            color: black;
+            cursor: pointer;
+            background-color: darkgoldenrod;
+            margin-top: 200px;
+            font-family: 'Crimson Text', serif;
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .form-control {
+            width: 349px;
+            height: 49px;
+            border: 2px solid #000;
+            border-radius: 5px;
+        }
+    </style>
+    <title>Login</title>
+</head>
+<body>
+    <div class="blur">
+        <div class="container d-flex align-items-start justify-content-between login-container" id="loginContainer">
+            <div class="col-md-6 imgclass">
+                <img src="cat.jpg" class="img-fluid" alt="Image">
+            </div>
+            <div class="col-md-6 login-cont">
+                <i class="fas fa-times close-icon" onclick="redirectToIndex()"></i>
+
+                <form onsubmit="handleLogin(event)">
+                    <h2>Log In to Explore more!</h2>
+                    <hr class="line">&nbsp;
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="username" placeholder="Username*" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="Password*" required>
+                    </div>
+                    <button type="submit" class="rounded-button">LOG IN</button>
+                </form>
+                <p id="loginMessage" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const validCredentials = {
+            johnDoe: "password123",
+            janeSmith: "welcome2025",
+            alexBrown: "securePass1",
+            emmaTaylor: "helloWorld",
+        };
+
+        function redirectToIndex() {
+            window.location.href = "index.html";
+        }
+
+        function handleLogin(event) {
+            event.preventDefault(); 
+            
+            const usernameInput = document.getElementById("username").value.trim();
+            const passwordInput = document.getElementById("password").value.trim();
+            const messageElement = document.getElementById("loginMessage");
+
+            if (validCredentials[usernameInput] && validCredentials[usernameInput] === passwordInput) {
+                messageElement.textContent = `Hi ${usernameInput}, Logged in.`;
+                messageElement.style.color = "green";
+            } else if (validCredentials[usernameInput]) {
+                messageElement.textContent = "Incorrect password. Please try again.";
+                messageElement.style.color = "red";
+            } else {
+                messageElement.textContent = "New user? Please register.";
+                messageElement.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
